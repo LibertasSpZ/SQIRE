@@ -169,94 +169,8 @@ Proof.
   rewrite TooYoungTooSimple.                                                                               auto.                                                                                                         
 Qed.
 
-  (*unfold Cmult.
-  apply Rinv_r_simpl_r.
 
-
-
-
-  
-  rewrite TooYoungTooSimple.
-  
-    unfold INR. apply RtoC_pow. }
-                                               intros contra.
-    unfold C0 in contra.
-    rewrite WWEKO in contra.
-    rewrite WWEKO in contra.
-                                               rewrite <- WWEKO.
-    intros contra. 
-    apply RtoC_inj.                                                 unfold INR. apply RtoC_pow. }
-                                             symmetry in  WWEKO.
-                                             rewrite RtoC_pow.
-                                             rewrite  WWEKO.    
-    apply INR2AllNeq0.
-    unfold Cmult.
-
-  assert (HowCome: (z * ((1 + 1) * / (1 + 1) * (1 + 1) ^ n)) % R = ((z % R) * ((1 + 1) * / (1 + 1) * (1 + 1) ^ n)%R)%R). {auto. }
-  
-                                                                                                                         Search RtoC. reflexivity. rewrite RtoC_mult.
-
-                                                                           
-                                                                           symmetry in TooYoungTooSimple.
-  assert (TTT: (z * / (1 + 1) ^ n)%R = (z * / (1 + 1) ^ n)%R). {reflexivity. }
-                                                               rewrite TooYoungTooSimple in TTT.
-  rewrite <- TooYoungTooSimple.  
-  apply RtoC_inj.
-  rewrite TooYoungTooSimple.                                                                           remember ((z * (1 + 1)^n) % R )  as RHS.
-   Check  (z * ((1 + 1) * / ((1 + 1) * (1 + 1) ^ n)))%R.
-  rewrite <- HeqRHS.     
-                                                       
-  assert ((/INR 2 * INR 2^n) % R  = (/ INR 2  * / INR 2^ n)%R) . 
-  { Search Rinv.
-
-
-
-
-
-
-
-
-      
-  Check ((1+1) * z)%R. 
-  Search Rinv.
-  (** Here, or after line 2 of this proof. **)   
-
-
-
-
-
-  
-  {apply trialToutJours with (r:= /(INR 2 * INR 2^n)). 
-  rewrite <- Rmult_1_r.
-  rewrite <- Rmult_1_r.  
-  destruct n eqn: DD.
-  - 
-     Search 1 2.
-     rewrite Rmult_1_r.
-     rewrite <- Rmult_plus_distr_l.
-     Search 1 2.
-     assert rewrite <- Rmult_1_l.
-     simpl.
-Lemma mult2Cexp: forall (i n : nat), Cexp(2 * PI * INR i / INR 2^(n + 1) +  2 * PI * INR i/ INR 2^(n + 1)) = Cexp(2 * PI * INR i / INR  2^ n).
-Proof.
-  intros.
-  apply f_equal.
-  Search pow Rmult.
-  
-  rewrite Nat.add_1_r.
-  Search pow Rmult.
-  repeat rewrite <- tech_pow_Rmult.
-  unfold Rdiv.
-  assert (forall (z:R), (z */ (INR 2 * INR 2^ n) + z */ (INR 2 * INR 2^n))%R = (z */  INR 2^ n)%R). 
-  { 
-    Search Rinv.  
-  Search pow Rmult.
-  Search S 1.
-  Search 1 2.
-  assert (KK: forall m, 2^(m + 1) = 2 * 2^m) . { induction m. - simpl. reflexivity. - Search S 1.
-Admitted.
-*)
-
+(* Main Thm 1 *)
 
 Lemma roots_n_plus1 : forall (n i : nat), unit_root n i = unit_root (n + 1) (2 * i).
 Proof.
@@ -278,80 +192,7 @@ Proof.
   auto.
 Qed.
 
-   (* rewrite <- Rmult_plus_distr_l.
-  
-  assert (alwaysAlmostTrivial: INR 2 = 2) . { unfold INR. simpl. auto. }
-                                            
-  rewrite <- alwaysAlmostTrivial.
-  unfold Cmult.
-  Search 2 PI.
-  unfold unit_root.
-  
-  intros.
-  rewrite Nat.add_1_r.
-  Search pow.
-  rewrite <- tech_pow_Rmult.
-  assert (alwaysAlmostTrivial: INR 2 = 2 ) . { unfold INR. simpl. auto. }
-                                             rewrite alwaysAlmostTrivial.
- 
-  rewrite mult_INR.
-  rewrite Rmult_comm.
-  rewrite Rmult_comm.
-  rewrite <- Rmult_assoc.
-  rewrite alwaysAlmostTrivial.
-  
-  assert (sofkingtired: INR 2 * PI * (INR 2 * INR i) = (INR 2 * INR i) * (INR 2 * PI)) . {apply Cmult_comm.  }
-                                                                                         unfold Cexp.
-  unfold cos, sin.
-                                                                                          rewrite sofkingtired.
-  Search INR.
-  
-                              assert (fthatfthat: 2 * PI * INR (2 * i) = INR (2 * i) * (2 * PI)) . {apply Cmult_comm. }
-                              assert (wtfever: 2 * PI * INR (2 * i) / (2 * 2 ^ n) = INR (2 * i) * (2 * PI)/ (2 * 2 ^ n) ). {rewrite fthatfthat. reflexivity. }
-                                                                                                                           assert (fkingIdiot: Cexp(2 * PI * INR (2 * i) / (2 * 2 ^ n)) = Cexp(INR (2 * i) * (2 * PI)/ (2 * 2 ^ n))) . {unfold Cexp. rewrite wtfever. reflexivity. }
-                                                                                                                           rewrite wtfever.                                                                                                   repeat rewrite Rdiv_unfold.
-  
-                                                                                                   rewrite fthatfthat.
-                              
-  apply Rmult_comm.
-  assert (trivialAgain: / (2 * 2^n) = / 2 * / 2^n ). {apply Cinv_mult_distr.
-                                                      + Search 2 0. rewrite <- alwaysAlmostTrivial. 
-                                                                                                                               rewrite <- fthat.
-                                                       
-                                                        intros H.
-                                                        simpl in H.
-                                                        Search 1 0.
-                                                        apply R1_neq_R0.
-                                                        Search pred.
 
-
-                                                        
-                                                        assert (tired: ((1+1)% R) % nat = 1+1). {intros. rewrite <- H. reflexivity. }
-                                                                                                                           
-                                                        apply equal_f with pred in H. 
-                                                        assert (howmanyTrivalsDoINeed: INR 2 = INR 0 -> (INR 2) % nat = (INR 0) % nat ). {intros. 
-  assert (trivialAgainAgain : 2 <> 0). 
-                                                        Search 2.
-                                                        Search nat S.
-                                                        Search 1 0.
-                                                        
-                                                        Search 2 0.
-                                                        
-                                                        assert (WhatTheHell: INR 2 > INR 0 -> INR 2 <> INR 0) . {
-                                                        assert (fck: {INR 2 < INR 0 } + {INR 2 > INR 0} + {INR 2 = INR 0} ) . {apply or_assoc.
-
-
-                                                                                                                                                                                                                         total_order_T. }
-                                                                                                                                                                                                                     inversion fck.
-                                                       
-  apply Rinv_mult_distr.
-  Search 2 0.
-  Search Rinv.
-  
-  assert (natsucc: (n + 1)%nat = S n1 ) . {(* Search nat. *) apply Nat.add_1_r.  }
-                                              rewrite  natsucc.
-  rewrite .
-Admitted. *)
 
 
 
@@ -381,19 +222,8 @@ Proof.
 Qed. 
 
 
-(* apply gt_Sn_n.
-                                           trivial.
-                                           Search nat.
-                                                                             
-                                         
-  Admitted.*)
-                                         
-  (* constructor. 
-  intros contra.    
-  constructor.   
-  unfold INR.
-  unfold INR in H.
-  constructor. *)
+                       
+  
   
 
 Lemma notless1ThenGet1: forall (n : nat),  ~(INR n < 1) -> INR n >= 1. Proof. intros. auto.  lra. Qed.
@@ -611,37 +441,12 @@ Proof.
   -
     simpl.
     intros n.
-    simpl.
-    
+    simpl.    
     auto.
-    (* rewrite Cplus_0_l.
-    rewrite Cplus_0_l.
-    unfold unit_root.
-    rewrite Rdiv_unfold.
-    rewrite Rdiv_unfold.
-    unfold Cexp; simpl.
-    remember (2 * PI)%R as arhw.
-    remember (/(1+1)^(n+1))%R as arhw2.
-    remember (/(1+1)^n)%R as arh3.
-    rewrite Rmult_0_r.
-    rewrite Rmult_0_l.
-    rewrite Rmult_0_l.
-    reflexivity. *)
-  
-    (* assert (trivialtritrivial: S pow = (pow + 1)%nat). {rewrite <- Nat.add_1_r.  auto. }
-                                                     rewrite trivialtritrivial.*)
-    (* assert (trivialtrivial233: forall (w:nat), (2 ^ (w + 1))%nat = (2 * 2^w)%nat). {induction w. - simpl. reflexivity. -   assert (Bahhh: (S w + 1)%nat = S (w + 1)). {  Search nat S 1.  remember (w + 1)%nat as barr. 
-                                                                                                                                                   rewrite  Nat.add_1_r.  rewrite Nat.add_1_r in Heqbarr. rewrite Heqbarr. reflexivity. } rewrite Bahhh. 
-      assert ( (2 ^ S (w+1))%nat = (2 * 2^(w + 1))%nat).  {simpl.    reflexivity. }                                 rewrite H.                                                                                       assert (WeAllKnowagain: S w = (w + 1)%nat) . {rewrite <- Nat.add_1_r. reflexivity. }
-                                                                                                                                                                                                                                                            rewrite WeAllKnowagain.  reflexivity. }   *)                 (* rewrite trivialtrivial233. *)
 
    -   
      intros. 
-     rewrite Nat.add_1_r.
-     (*unfold sum_of_Even_Pow_roots.
-     unfold sum_of_roots.*)
-    
-    
+     rewrite Nat.add_1_r.  
      assert (Cool: sum_of_Even_Pow_roots (n+1 ) (S (pow)) = sum_of_Even_Pow_roots (n+1) (pow) + unit_root (n+1) (2 * (pow))). {reflexivity. }
                                                                                                                               assert (Cool2: sum_of_roots n ( S (pow ) ) = sum_of_roots n (pow ) + unit_root n (pow )). {reflexivity. }
      assert (duh: S n = (n + 1)%nat).   {rewrite Nat.add_1_r. auto. }                                                                            rewrite duh.                                                                                                                                        
@@ -810,82 +615,18 @@ Qed.
 
 
 
-                     assert (WTFFF: (2 ^ (n+1))%nat = (2 * 2^n)%nat ).                                                                                                                                                                                                                                                                                          rewrite IHw. auto. simpl. unfold Cpow.
-
-
-
-                                                                                                     Check 2^ S n.
-      assert (Finee: (2 ^ S n) = (2 ^ S n)%R). {rewrite RtoC_pow. auto. }
-      Search INR.     
-      Search INR.
-      
-      rewrite <- tech_pow_Rmult.
-      rewrite powsWhom.
-     intros.
-     remember (pow - 1)%nat as pow'.
-     assert (IHmpowMinus1: unit_root m 2 ^ pow' -1 = (unit_root m 1 - 1) * sum_of_roots m 2^pow') .   {apply IHm. }
-          
-
-    Search Cpow.
-    intros.
-    (* unfold Cpow. *)   
-    induction pow.
-    assumption.
-       
-    simpl.
-    Search Rminus.
- 
+                    
+     
     
-    intros pow PWP.
-    rewrite Cmult_0_l.
-
-    remember ((2 * PI * INR pow)% R) as arrhrr.
-    rewrite Rdiv_unfold.
-    rewrite RMicromega.Rinv_1.
-    rewrite Heqarrhrr.
-    assert (Der: Cexp (2 * PI * INR pow) = 1). {apply Cexp2PipowAlways1. assumption. }
-    rewrite Der.
-    assumption.
+   
   - induction pow. 
-    + simpl. 
-      intros P.
-      assert (butNo: 0 < 1). {Search 0 1. apply Rlt_0_1. }
-                             lca.
-    + 
-
-      intros.
-      assert (somethingAboutSpow: unit_root m (S pow) - 1 = (unit_root m 1 - 1) * sum_of_roots m (S pow) ). {apply IHm. assumption. }
-                                                                                                       
-      intros .
-    assert (ABetterIHm: unit_root m pow - 1 = (unit_root m 1 - 1) * sum_of_roots m pow). {apply 
-                                                                                            IHm. assumption. }
-    rewrite <- Nat.add_1_r.                                                                           remember ( 2 * pow )% nat as powprime.            
-Admitted.
+   
 
 
-
-    Search 2 PI.     
-    unfold INR.
-    remember (2 * PI * INR pow)  as arrh.
-  
-    rewrite Rdiv_unfold.
-    
-    rewrite RMicromega.Rinv_1
-    Search Rinv.
-    rewrite Rmult_assoc.
-    rewrite Rmult_1_r.
-
-
-
-
-    
-    unfold Cinv.
-    apply RMicromega.Rinv_1 with (r:= (2 * PI * 1)%R).
-  Admitted.
-
+   
 *)
 
-
+(* Leave the below as an example for illustration of bad design.  *)
  
 (* *** A failed attempt to show zeros. It's actually weaker but it appears that the zero approach (and induction) isn't the way to go? [Or should induct on n instead of pow]... ***
 
@@ -1011,29 +752,6 @@ assumption.
 Qed. 
 
 
-(* assert (forall (c:C), c<> 0 -> c + c<> 0). {intros. intros contra10101.
-                                    assert 
-
-assert ((-1, 0) <> (1, 0)). 
-assert (OOHHH: 1 + (-1, 0) = 0). {auto. simpl. assert (C1 = (1, 0)). {simpl. auto. } 
-assert (OTOH: (-1, 0)<> C1). { Search fst.   auto. 
-
-                                  assert(H1110: 
-rewrite Rmult_assoc in contra.
-rewrite <- Rmult_assoc in contra.
-simpl in contra. *)
-                                                                   (*   {assert (D2: (n < 1)%nat). 
-Search nat 0 1. auto. assert (indeed: ~( n >= 1)%nat ). {intros contra99. Search INR. 
-
-                                                                                                                                                                                                                                           
-                                                                     induction (S (n)).
-                                                                       + intros.
-                                                                       assert (contra: INR(0) < 1). {simpl. Search 0 1. apply Rlt_0_1. }
-                                                                                                    lra.
-                                                                       + 
-                                                                       rewrite <- Nat.add_1_r.
-                                                                       intros contra.
-                                                                       unfold unit_root in contra. *)
                                                                  
 
 
