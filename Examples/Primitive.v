@@ -66,80 +66,7 @@ Proof.
   reflexivity.
 Qed.  
 
-  (** assert (whyAreSomeCompilersSoDumb: 2 * PI * INR j * / INR 2 ^ n = (2 * PI) * (INR j * / INR 2 ^ n) ). { rewrite Rmult_assoc.
-  rewrite <- Rmult_plus_distr_l.
-  intros.
-  generalize dependent j.
-  unfold unit_root.
-  Search pow.
-  induction i eqn:E.
-  - induction j eqn:D.
-    + simpl.
-      unfold Cexp.
-      try rewrite Rmult_0_r.
-      unfold Rdiv.
-      try rewrite Rmult_0_l.
-      Search cos.
-      rewrite cos_0,sin_0.
-      rewrite Cmult_1_l.
-      reflexivity.
-    + unfold Cexp.
-      try rewrite Rmult_0_r.
-      unfold Rdiv.
-      try rewrite Rmult_0_l.
-      rewrite cos_0, sin_0.
-      rewrite Cmult_1_l.
-      rewrite plus_0_l.
-      reflexivity.
-  -
 
-    induction j eqn:D.
-    
-    + 
-      unfold Cexp.
-      try rewrite Rmult_0_r.
-      unfold Rdiv.
-      try rewrite Rmult_0_l.
-      rewrite cos_0,sin_0.
-      rewrite Cmult_1_r.
-      rewrite plus_0_r.
-      reflexivity.
-    +
-
-      
-      Search cos.
-       assert (natsucc: (n1 + 1)%nat = S n1 ) . {(* Search nat. *) apply Nat.add_1_r.  }
-                                              rewrite <- natsucc.
-
-       try rewrite plus_INR.
-       rewrite plus_INR.
-       rewrite plus_INR.
-       rewrite <- Rplus_assoc.
-       (* Search R mult. *)
-       repeat rewrite Rmult_plus_distr_l.
-       assert (isAlmostTrivial: INR 1 = 1 ). {unfold INR. reflexivity. }
-                                             rewrite isAlmostTrivial.
-       rewrite Rmult_1_r.
-       unfold Rdiv.
-       rewrite Rmult_plus_distr_r.
-       rewrite Rmult_plus_distr_r.
-       rewrite CexpDistr.
-       rewrite CexpDistr.
-       rewrite <- CexpAssoc.
-       rewrite <- Rmult_plus_distr_l.
-       unfold Rdiv in IHn1.
-       rewrite IHn1.
-       rewrite plus_INR.
-       reflexivity.
-       Admitted.
-   **)
-
-
-
-(* Lemma mult2Cexp: forall (r1 r2: R), Cexp(r1 /r2) = Cexp( (2* r1) /  ( 2 * r2) ). 
-Proof.
-  Search Rdiv.
-  Admitted. *)
 
 Lemma greatNeqR: forall (r : R), 0 < r -> r <> 0.
   Proof. 
@@ -206,172 +133,6 @@ Lemma greatNeqR: forall (r : R), 0 < r -> r <> 0.
     simpl in LL.
     auto. 
   Qed.
-
-
-
- (*  apply RtoC_inv.
-    assert (WWWWW: / (INR 2)^m = (/ (INR 2)^m  ) % R  ). {symmetry. apply RtoC_inv.
-    unfold RtoC in WWWG.
-    apply RtoC_inv in WWWG.    
-  apply RtoC_inj.    
-    unfold RtoC.
-    (* unfold Cpow. *)
-    intros m.
-    destruct m eqn: PP.
-    - simpl.
-      Search 1 0.
-      intros.
-
-      intros contra.
-      apply R1_neq_R0.
-      apply RtoC_inj.
-      apply contra.
-    - simpl.
-      apply Cmult_neq_0.
-      + Search fst.
-        apply C0_fst.
-        simpl.
-        assert (WWW: (1+1)%R = INR 2) . {simpl. reflexivity. }
-                                        rewrite WWW.
-        apply INR2Neq0.
-      + Search Cpow.
-        intros contra.
-      Search 0.
-      unfold Cpow.
-      
-      simpl.
-      apply injective_projections.
-
-      rewrite RtoC_pow.
-     
-      rewrite <- tech_pow_Rmult.
-
-      
-      assert (DD: INR 2 * INR 2 ^ n <> 0 -> (INR 2 * INR 2 ^ n)%R <> 0).
-      
-      Search 0.
-      intros.
-      (* remember (2 ^ n) as what.
-      simpl. *)
-      Search Rmult.
-      assert (DDD: (INR 2)%R = INR 2 ). {apply RtoC_inj. reflexivity.  }
-                                       
-      assert (DDDD: INR 2^n = (INR 2^n) % R). {symmetry. unfold INR. rewrite RtoC_pow. reflexivity.  }
-      rewrite  DDDD in H.
-      assert (DDDDD: INR 2 * (INR 2 ^ n)%R = (INR 2 * INR 2 ^ n) % R). { unfold RtoC. unfold Cmult.  
-      simpl.  repeat rewrite Rmult_0_r. rewrite Rmult_0_l. rewrite Rplus_0_l. rewrite Rminus_0_r.
-      reflexivity. }
-                                                                       intros contra.
-      rewrite DDDDD in H.
-      contradiction H.
-      symmetry in contra.
-      rewrite contra.
-      reflexivity.
-      apply DD.
-
-
-
-      
-      
-      rewrite <- DDDDD.
-      rewrite <- DDDDD in contra.
-      apply RtoC_inj.
-      
-      apply RtoC_inj in contra.
-      rewrite <- DDDDD in contra.
-      apply DDDDD.
-      apply RtoC_inj.
-                                                                       rewrite <- DDDDD.
-      rewrite RtoC_inj.
-      apply H.
-      rewrite RtoC_inj.      
-      
-      rewrite <- mult_INR.
-      Search Rmult.
-      apply Rmult_integral_contrapositive.
-      {intros. intros contra. rewrite <- contra in H. contradiction H.
-       repeat unfold Cmult.
-       
-       repeat simpl.
-       repeat rewrite Rmult_0_l.
-       rewrite Rplus_0_r.
-       rewrite Rminus_0_r.
-       simpl.
-       unfold Cmult.
-       unfold Cmult.
-   intros m P.
-    destruct m  eqn: PP.    
-    -  simpl in P.
-       apply R1_neq_R0.
-       apply RtoC_inj.
-       apply P.     
-
-    - rewrite RtoC_pow in P.
-     
-      rewrite <- tech_pow_Rmult in P.
-      Search INR.
-      remember (2 ^ n)%nat as g.
-      rewrite <-Heqg in P.      
-      rewrite <- mult_INR in P. 
-
-      Admitted.
-
-    
-    intros m.
-    destruct m eqn: PP.
-    - simpl.
-      Search 1 0.
-      intros.
-
-      intros contra.
-      apply R1_neq_R0.
-      apply RtoC_inj.
-      apply contra.
-    - rewrite RtoC_pow.
-     
-      rewrite <- tech_pow_Rmult.
-
-      apply Cmult_neq_0.
-
-
-    
-    
-      
-      assert (INR 2 ^ S n = INR 2 * INR 2^n). {rewrite <- tech_pow_Rmult.
-
-                                                 in P.apply
-                                                 RtoC_inj.
-      rewrite <- tech_pow_Cmult in P.
-       (* induction m as [a | IH] eqn: PP.*)
-    (* generalize dependent m.*)
-    induction m as [| m' IHm' ] eqn: PP.
-    - simpl.
-      Search 1 0.
-      intros.
-
-      intros contra.
-      apply R1_neq_R0.
-      apply RtoC_inj.
-      apply contra.
-    - 
-            
-      apply greatNeqR.
-    apply greatNeqR.
-    assert (alwaysAlmostTrivial: INR 2 = 2 ) . { unfold INR. simpl. auto. }
-                                               rewrite alwaysAlmostTrivial.
-    Search 0 2.
-    apply Rlt_0_2.
-  Qed.
-*)  
-  
-
-
-(* Lemma CInteg: forall (c1 c2: C), c1 * c2 =  0 -> c1 = 0 \/ c2 = 0.
-Proof. Use the C_neq lemma.
-
-Lemma other way: forall (c1 c2: C), c1 * C2 <> 0 -> c1 <> 0 /\ C2 <> 0.
-Proof. Contra, demorgan, use mult_0 properties.
-*)
 
   
   
@@ -532,8 +293,7 @@ Qed.
   rewrite <- tech_pow_Rmult.
   assert (alwaysAlmostTrivial: INR 2 = 2 ) . { unfold INR. simpl. auto. }
                                              rewrite alwaysAlmostTrivial.
-  assert (fthat: INR 0 = 0) . {auto. }
-                              repeat rewrite Rdiv_unfold.
+ 
   rewrite mult_INR.
   rewrite Rmult_comm.
   rewrite Rmult_comm.
@@ -1361,6 +1121,6 @@ apply or_intror. assumption.
     apply Tired in EitherOr. assumption.  assumption.
 Qed. 
 
-    (* rewrite wwww. *)
+
 
 
