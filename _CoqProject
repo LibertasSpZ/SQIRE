@@ -28,4 +28,4 @@ examples/Deutsch.v
 examples/DeutschJozsa.v
 examples/GHZ.v
 examples/Superdense.v
-
+examples/Primitive.v
