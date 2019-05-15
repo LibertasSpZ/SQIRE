@@ -10,8 +10,10 @@ Open Scope C_scope.
 Bind Scope R_scope with R.
 Bind Scope C_scope with C.
 
-(* This file verifies some computational properties of the unitary group {w_n^j}_j needed for verifying
-QFT correctness.
+(* This file verifies some computational properties of the cyclic group of 
+primitive roots of unity {w_{2^n}^j}_j. These computational properties are
+needed for verifying the correctness of QFT, which is part of a larger ongoing
+research project. 
 *)
 
 
